@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<property name="Manlog" value="/app/standalone_apps" />
+	<appender name="FrameworkAppnder" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${ManLog}/app_logs/Framework/Framework.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d %10X{portalUserName} %-5level %10X{ipAddress} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${ManLog}/app_logs/Framework/Framework.%d.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>
+        </rollingPolicy>
+  
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>30KB</MaxFileSize>
+        </triggeringPolicy>
+        
+	</appender>
+	
+<appender name="PaymentAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${ManLog}/app_logs/Payment/Payment.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d %10X{portalUserName} %-5level %10X{ipAddress} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${ManLog}/app_logs/Payment/Payment.%d.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>
+        </rollingPolicy>
+  
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>30KB</MaxFileSize>
+        </triggeringPolicy>
+        
+	</appender>
+	
+	<appender name="ProfessionalAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${ManLog}/app_logs/Professional/Professional.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d %10X{portalUserName} %-5level %10X{ipAddress} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${ManLog}/app_logs/Professional/Professional.%d.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>
+        </rollingPolicy>
+  
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>3MB</MaxFileSize>
+        </triggeringPolicy>
+        
+	</appender>
+	
+	<logger name="Professional" level="debug" additivity="false">
+		<appender-ref ref="ProfessionalAppender" />
+	</logger>
+	
+	<logger name="Framework" level="debug" additivity="false">
+		<appender-ref ref="FrameworkAppnder" />
+	</logger>
+	
+<logger name="Payment" level="debug" additivity="false">
+		<appender-ref ref="PaymentAppender" />
+	</logger>
+
+	
+	<logger name="org.springframework">
+       <level value="DEBUG" />
+    </logger>
+
+	
+	<root level="DEBUG">
+		<!-- <appender-ref ref="FrameworkAppnder"/> -->
+	</root>
+</configuration>
